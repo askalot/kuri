@@ -2,10 +2,9 @@ ENTRY_FILE=./cmd/main.go
 OUTPUT_DIRECTORY=./bin
 OUTPUT_EXECUTABLE=server
 
-.PHONY: serve
+.PHONY: clean serve setup
 
-setup:
-	sh ./scripts/setup.sh
+all: setup clean build serve
 
 build:
 	go build -o $(OUTPUT_DIRECTORY)/$(OUTPUT_EXECUTABLE) $(ENTRY_FILE)
@@ -15,3 +14,6 @@ clean:
 
 serve:
 	go run $(ENTRY_FILE)
+
+setup:
+	sh ./scripts/setup.sh

@@ -5,6 +5,13 @@
 * [Go](https://go.dev/)
 * [Make](https://www.gnu.org/software/make/)
 
+## Quickstart
+
+Run:
+```
+make
+```
+
 ## Setup
 
 ```
