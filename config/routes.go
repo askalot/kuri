@@ -1,15 +1,17 @@
 package config
 
 import (
-	"net/http"
+	"github.com/go-chi/chi/v5"
 
 	"github.com/askalot/kuri/controllers"
 )
+
+var Router = chi.NewRouter()
 
 const (
 	NotesIndex = "/"
 )
 
 func SetupRoutes() {
-	http.HandleFunc(NotesIndex, controllers.NotesIndex)
+	Router.Get(NotesIndex, controllers.NotesIndex)
 }
