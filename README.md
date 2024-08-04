@@ -7,6 +7,11 @@
 
 ## Quickstart
 
+Check build commands with:
+```
+make usage
+```
+
 Run:
 ```
 make

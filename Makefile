@@ -17,3 +17,11 @@ serve:
 
 setup:
 	sh ./scripts/setup.sh
+
+usage:
+	@echo ""
+	@echo "make all  	# Run setup, clean, build, serve commands"
+	@echo "make build	# Build project"
+	@echo "make clean	# Clean build directory"
+	@echo "make serve	# Start server"
+	@echo "make setup	# Run setup script"
