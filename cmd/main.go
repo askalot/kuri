@@ -10,6 +10,7 @@ import (
 
 func init() {
 	config.LoadEnvironmentVariables()
+	config.SetupStaticAssets()
 }
 
 func startServer() {
