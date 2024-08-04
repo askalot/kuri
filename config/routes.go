@@ -1,8 +1,9 @@
 package config
 
 import (
-	"fmt"
 	"net/http"
+
+	"github.com/askalot/kuri/controllers"
 )
 
 const (
@@ -10,7 +11,5 @@ const (
 )
 
 func SetupRoutes() {
-	http.HandleFunc(NotesIndex, func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, world!")
-	})
+	http.HandleFunc(NotesIndex, controllers.NotesIndex)
 }
