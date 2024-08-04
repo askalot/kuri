@@ -1,10 +1,16 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
+	"text/template"
+)
+
+const (
+	notesViewsDirectory = "views/notes/"
 )
 
 func NotesIndex(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, world!")
+	tmpl := template.Must(template.ParseFiles(notesViewsDirectory + "index.html"))
+
+	tmpl.Execute(w, nil)
 }
