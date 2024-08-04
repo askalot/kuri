@@ -3,15 +3,22 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
+
+	"github.com/askalot/kuri/config"
 )
 
-func startServer() {
-	PORT := ":3000"
+func init() {
+	config.LoadEnvironmentVariables()
+}
 
-	fmt.Println(fmt.Sprintf("\nListening on http://localhost%s.", PORT))
+func startServer() {
+	port := ":" + os.Getenv("PORT")
+
+	fmt.Println(fmt.Sprintf("\nListening on http://localhost%s.", port))
 	fmt.Println("Use Ctrl-C stop.")
 
-	http.ListenAndServe(PORT, nil)
+	http.ListenAndServe(port, nil)
 }
 
 func main() {
