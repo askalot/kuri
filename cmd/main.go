@@ -11,6 +11,7 @@ import (
 func init() {
 	config.LoadEnvironmentVariables()
 	config.SetupStaticAssets()
+	config.SetupRoutes()
 }
 
 func startServer() {
@@ -23,9 +24,5 @@ func startServer() {
 }
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, world!")
-	})
-
 	startServer()
 }
