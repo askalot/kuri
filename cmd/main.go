@@ -10,7 +10,6 @@ import (
 
 func init() {
 	config.LoadEnvironmentVariables()
-	config.SetupStaticAssets()
 	config.SetupRoutes()
 }
 

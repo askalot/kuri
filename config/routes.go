@@ -1,6 +1,8 @@
 package config
 
 import (
+	"net/http"
+
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 
@@ -16,6 +18,9 @@ const (
 
 func SetupRoutes() {
 	Router.Use(middleware.Logger)
+
+	staticAssetsDirectory := http.Dir("assets")
+	Router.Handle(StaticAssetsPath+"*", http.StripPrefix(StaticAssetsPath, http.FileServer(staticAssetsDirectory)))
 
 	Router.Get(NotesIndex, controllers.NotesIndex)
 	Router.Get(NotesNew, controllers.NotesNew)
