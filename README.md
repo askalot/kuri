@@ -5,6 +5,11 @@
 * [Go](https://go.dev/)
 * [Make](https://www.gnu.org/software/make/)
 
+## Uses
+
+* [GoDotEnv](https://pkg.go.dev/github.com/joho/godotenv)
+* [chi](https://go-chi.io/)
+
 ## Quickstart
 
 Check build commands with:
