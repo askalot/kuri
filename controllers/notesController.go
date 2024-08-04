@@ -14,3 +14,9 @@ func NotesIndex(w http.ResponseWriter, r *http.Request) {
 
 	tmpl.Execute(w, nil)
 }
+
+func NotesNew(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles(notesViewsDirectory + "new.html"))
+
+	tmpl.Execute(w, nil)
+}

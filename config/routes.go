@@ -11,10 +11,12 @@ var Router = chi.NewRouter()
 
 const (
 	NotesIndex = "/"
+	NotesNew   = "/new"
 )
 
 func SetupRoutes() {
 	Router.Use(middleware.Logger)
 
 	Router.Get(NotesIndex, controllers.NotesIndex)
+	Router.Get(NotesNew, controllers.NotesNew)
 }
