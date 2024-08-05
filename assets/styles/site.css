@@ -54,6 +54,28 @@ body {
 	box-shadow: 0 1px 3px rgba(0 0 0 / 0.1);
 }
 
+/* Button */
+
+button {
+	font-size: 0.875rem;
+	padding: 0.5em 1em;
+}
+
+/* Input */
+
+input[type="text"],
+textarea {
+	font-size: 1rem;
+	line-height: 2;
+	padding-inline: 0.5em;
+}
+
+/* Label */
+label {
+	font-size: 0.875rem;
+	line-height: 1.5;
+}
+
 /* Layout */
 
 .layout--container {
