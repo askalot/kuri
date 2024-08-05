@@ -9,3 +9,38 @@
 body {
 	font-family: sans-serif;
 }
+
+/* a11y (accessibility) */
+
+/*
+	References:
+	* https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html
+	* https://webaim.org/techniques/skipnav/
+*/
+.skip-links {
+	inset-inline-start: -100vw;
+	position: absolute;
+
+	ul {
+		list-style: none;
+	}
+
+	a {
+		background: black;
+		color: white;
+		inset-block-start: 0;
+		inset-inline-start: 0;
+		opacity: 0;
+		padding: 1em;
+		position: fixed;
+		transform: translateY(-10em);
+		transition:
+			transform 0.3s ease-in-out,
+			opacity 0.3s ease-in-out;
+
+		&:focus {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+}

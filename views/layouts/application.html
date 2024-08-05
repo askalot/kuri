@@ -3,10 +3,21 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
 		<link rel="stylesheet" href="static/styles/site.css" />
 	</head>
 
 	<body>
-		<main>{{ template "content" .}}</main>
+		<nav aria-label="Skip links" class="skip-links">
+			<ul>
+				<li>
+					<a href="#primaryContent" class="skip-link">
+						Skip to primary content
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<main id="primaryContent">{{ template "content" .}}</main>
 	</body>
 </html>
