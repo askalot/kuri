@@ -7,6 +7,7 @@
 }
 
 body {
+	background: #efefef;
 	font-family: sans-serif;
 }
 
@@ -43,6 +44,41 @@ body {
 			transform: translateY(0);
 		}
 	}
+}
+
+/* Card */
+
+.card {
+	background-color: white;
+	border-radius: 0.25em;
+	box-shadow: 0 1px 3px rgba(0 0 0 / 0.1);
+}
+
+/* Layout */
+
+.layout--container {
+	max-inline-size: 80ch;
+	margin-inline: auto;
+}
+
+.layout--stack {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+/* Spacing */
+
+.padding--1em {
+	padding: 1em;
+}
+
+.padding-inline--1em {
+	padding-inline: 1em;
+}
+
+.padding-block--5em {
+	padding-block: 5em;
 }
 
 /* Site Header */

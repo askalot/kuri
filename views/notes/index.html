@@ -1,23 +1,25 @@
 {{ define "content" }}
-<h1>Notes</h1>
+<div class="layout--container layout--stack padding-block--5em padding-inline--1em">
+	<h1>Notes</h1>
 
-{{ if .Success }}
-<section>
-	<p>New note created.</p>
-</section>
-{{ end }}
+	{{ if .Success }}
+	<section>
+		<p>New note created.</p>
+	</section>
+	{{ end }}
 
-{{ if .Notes }}
-{{ range .Notes}}
-<article>
-	<h2>{{ .Title }}</h2>
+	{{ if .Notes }}
+	{{ range .Notes}}
+	<article class="card padding--1em layout--stack">
+		<h2>{{ .Title }}</h2>
 
-	<p>{{ .Description }}</p>
-</article>
-{{ end }}
-{{ else }}
-<section>
-	<p>You don't have any notes yet.</p>
-</section>
-{{ end }}
-{{ end }}
+		<p>{{ .Description }}</p>
+	</article>
+	{{ end }}
+	{{ else }}
+	<section>
+		<p>You don't have any notes yet.</p>
+	</section>
+	{{ end }}
+	{{ end }}
+</div>
