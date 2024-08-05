@@ -3,6 +3,8 @@ package controllers
 import (
 	"net/http"
 	"text/template"
+
+	"github.com/askalot/kuri/models"
 )
 
 const (
@@ -11,9 +13,28 @@ const (
 )
 
 func NotesIndex(w http.ResponseWriter, r *http.Request) {
+	notes := []models.Note{
+		{
+			Title:       "First note",
+			Description: "Note Uno Details",
+		},
+		{
+			Title:       "Second note",
+			Description: "Note Dos Details",
+		},
+		{
+			Title:       "Third note",
+			Description: "Note Tres Details",
+		},
+	}
+
 	tmpl := template.Must(template.ParseFiles(applicationLayout, notesViewsDirectory+"index.html"))
 
-	tmpl.Execute(w, nil)
+	tmpl.Execute(w, struct {
+		Notes []models.Note
+	}{
+		Notes: notes,
+	})
 }
 
 func NotesNew(w http.ResponseWriter, r *http.Request) {
