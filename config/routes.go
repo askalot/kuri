@@ -17,7 +17,9 @@ const (
 )
 
 func SetupRoutes() {
+	Router.Use(middleware.RequestID)
 	Router.Use(middleware.Logger)
+	Router.Use(middleware.Recoverer)
 
 	staticAssetsDirectory := http.Dir("assets")
 	Router.Handle(StaticAssetsPath+"*", http.StripPrefix(StaticAssetsPath, http.FileServer(staticAssetsDirectory)))
