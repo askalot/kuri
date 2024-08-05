@@ -1,9 +1,10 @@
 # kuri
 
-## Requirements
+## Requires
 
 * [Go](https://go.dev/)
 * [Make](https://www.gnu.org/software/make/)
+* [Air](https://github.com/air-verse/air)
 
 ## Uses
 
@@ -30,9 +31,13 @@ make setup
 
 ## Run
 
+Start the server on `PORT` defined in `.env`:
+
 ```
 make serve
 ```
+
+Default URL is http://localhost:3000.
 
 ## Build
 

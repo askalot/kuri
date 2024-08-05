@@ -18,6 +18,9 @@ serve:
 setup:
 	sh ./scripts/setup.sh
 
+watch:
+	air --build.cmd "make build" --build.bin "./bin/server"
+
 usage:
 	@echo ""
 	@echo "make all  	# Run setup, clean, build, serve commands"
