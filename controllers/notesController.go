@@ -3,6 +3,7 @@ package controllers
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 	"text/template"
 
 	"github.com/askalot/kuri/models"
@@ -29,12 +30,20 @@ func NotesIndex(w http.ResponseWriter, r *http.Request) {
 		},
 	}
 
+	successParam := r.URL.Query().Get("success")
+	success, err := strconv.ParseBool(successParam)
+	if err != nil {
+		success = false
+	}
+
 	tmpl := template.Must(template.ParseFiles(applicationLayout, notesViewsDirectory+"index.html"))
 
 	tmpl.Execute(w, struct {
-		Notes []models.Note
+		Notes   []models.Note
+		Success bool
 	}{
-		Notes: notes,
+		Notes:   notes,
+		Success: success,
 	})
 }
 
@@ -52,5 +61,5 @@ func NotesCreate(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(note)
 
-	http.Redirect(w, r, "/", http.StatusSeeOther)
+	http.Redirect(w, r, "/?success=true", http.StatusSeeOther)
 }

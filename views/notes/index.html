@@ -1,6 +1,12 @@
 {{ define "content" }}
 <h1>Notes</h1>
 
+{{ if .Success }}
+<section>
+	<p>New note created.</p>
+</section>
+{{ end }}
+
 {{ if .Notes }}
 {{ range .Notes}}
 <article>
