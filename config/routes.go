@@ -26,4 +26,5 @@ func SetupRoutes() {
 
 	Router.Get(NotesIndex, controllers.NotesIndex)
 	Router.Get(NotesNew, controllers.NotesNew)
+	Router.Post(NotesIndex, controllers.NotesCreate)
 }

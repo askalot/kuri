@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 	"text/template"
 
@@ -41,4 +42,15 @@ func NotesNew(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles(applicationLayout, notesViewsDirectory+"new.html"))
 
 	tmpl.Execute(w, nil)
+}
+
+func NotesCreate(w http.ResponseWriter, r *http.Request) {
+	note := models.Note{
+		Title:       r.FormValue("title"),
+		Description: r.FormValue("description"),
+	}
+
+	fmt.Println(note)
+
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }

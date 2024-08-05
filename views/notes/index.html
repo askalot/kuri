@@ -1,14 +1,17 @@
 {{ define "content" }}
 <h1>Notes</h1>
 
-{{ if .Notes }} {{ range .Notes}}
+{{ if .Notes }}
+{{ range .Notes}}
 <article>
 	<h2>{{ .Title }}</h2>
 
 	<p>{{ .Description }}</p>
 </article>
-{{ end }} {{ else }}
+{{ end }}
+{{ else }}
 <section>
 	<p>You don't have any notes yet.</p>
 </section>
-{{ end }} {{ end }}
+{{ end }}
+{{ end }}
