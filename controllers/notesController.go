@@ -1,12 +1,12 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	"text/template"
 
 	"github.com/askalot/kuri/models"
+	"github.com/askalot/kuri/store"
 )
 
 const (
@@ -15,22 +15,22 @@ const (
 	notesViewsDirectory = "views/notes/"
 )
 
-func NotesIndex(w http.ResponseWriter, r *http.Request) {
-	notes := []models.Note{
-		{
-			Title:       "First note",
-			Description: "Note Uno Details",
-		},
-		{
-			Title:       "Second note",
-			Description: "Note Dos Details",
-		},
-		{
-			Title:       "Third note",
-			Description: "Note Tres Details",
-		},
-	}
+var noteStore = store.NewNoteStore([]models.Note{
+	{
+		Title:       "First note",
+		Description: "Note Uno Details",
+	},
+	{
+		Title:       "Second note",
+		Description: "Note Dos Details",
+	},
+	{
+		Title:       "Third note",
+		Description: "Note Tres Details",
+	},
+})
 
+func NotesIndex(w http.ResponseWriter, r *http.Request) {
 	successParam := r.URL.Query().Get("success")
 	success, err := strconv.ParseBool(successParam)
 	if err != nil {
@@ -43,7 +43,7 @@ func NotesIndex(w http.ResponseWriter, r *http.Request) {
 		Notes   []models.Note
 		Success bool
 	}{
-		Notes:   notes,
+		Notes:   noteStore.AllNotes(),
 		Success: success,
 	})
 }
@@ -60,7 +60,7 @@ func NotesCreate(w http.ResponseWriter, r *http.Request) {
 		Description: r.FormValue("description"),
 	}
 
-	fmt.Println(note)
+	noteStore.CreateNote(note)
 
 	http.Redirect(w, r, "/?success=true", http.StatusSeeOther)
 }
