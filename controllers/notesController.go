@@ -8,6 +8,7 @@ import (
 	"text/template"
 
 	"github.com/askalot/kuri/internal/fileutils"
+	"github.com/askalot/kuri/internal/timeutils"
 	"github.com/askalot/kuri/models"
 	"github.com/askalot/kuri/store"
 )
@@ -18,10 +19,11 @@ const (
 	notesViewsDirectory = "views/notes/"
 )
 
+const dataDirectory = "./data"
+
 var noteStore = store.NewNoteStore([]models.Note{})
 
 func init() {
-	dataDirectory := "./data"
 	allowedExtensions := []string{".md"}
 
 	fileNames, err := fileutils.ListFileNames(dataDirectory)
@@ -37,7 +39,7 @@ func init() {
 			}
 
 			noteStore.CreateNote(models.Note{
-				Title:       fileName,
+				Title:       fileutils.GetFileNameWithoutExtension(fileName),
 				Description: content,
 			})
 		}
@@ -69,11 +71,15 @@ func NotesNew(w http.ResponseWriter, r *http.Request) {
 }
 
 func NotesCreate(w http.ResponseWriter, r *http.Request) {
-	note := models.Note{
-		Title:       r.FormValue("title"),
-		Description: r.FormValue("description"),
-	}
+	fileContent := r.FormValue("note")
+	fileName := timeutils.GenerateCurrentDateTimeString() + ".md"
+	filePath := filepath.Join(dataDirectory, fileName)
+	fileutils.CreateFileWithContentString(filePath, fileContent)
 
+	note := models.Note{
+		Title:       fileutils.GetFileNameWithoutExtension(fileName),
+		Description: fileContent,
+	}
 	noteStore.CreateNote(note)
 
 	http.Redirect(w, r, "/?success=true", http.StatusSeeOther)
