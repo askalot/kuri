@@ -27,3 +27,6 @@ go.work.sum
 # Output
 /bin
 /tmp
+
+# Data
+/data
