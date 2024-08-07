@@ -2,6 +2,7 @@ package fileutils
 
 import (
 	"os"
+	"path"
 	"path/filepath"
 )
 
@@ -27,6 +28,10 @@ func GetFileContentString(fileName string) (string, error) {
 	}
 
 	return string(content), nil
+}
+
+func GetFileNameWithoutExtension(fileName string) string {
+	return fileName[:len(fileName)-len(path.Ext(fileName))]
 }
 
 func HasAllowedExtension(fileName string, extensions []string) bool {
