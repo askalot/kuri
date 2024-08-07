@@ -31,6 +31,8 @@ make setup
 
 ## Run
 
+Update `ADMIN_USERNAME` and `ADMIN_PASSWORD` in `.env`.
+
 Start the server on `PORT` defined in `.env`:
 
 ```
