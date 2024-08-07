@@ -1,10 +1,13 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
+	"path/filepath"
 	"strconv"
 	"text/template"
 
+	"github.com/askalot/kuri/internal/fileutils"
 	"github.com/askalot/kuri/models"
 	"github.com/askalot/kuri/store"
 )
@@ -15,20 +18,31 @@ const (
 	notesViewsDirectory = "views/notes/"
 )
 
-var noteStore = store.NewNoteStore([]models.Note{
-	{
-		Title:       "First note",
-		Description: "Note Uno Details",
-	},
-	{
-		Title:       "Second note",
-		Description: "Note Dos Details",
-	},
-	{
-		Title:       "Third note",
-		Description: "Note Tres Details",
-	},
-})
+var noteStore = store.NewNoteStore([]models.Note{})
+
+func init() {
+	dataDirectory := "./data"
+	allowedExtensions := []string{".md"}
+
+	fileNames, err := fileutils.ListFileNames(dataDirectory)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	for _, fileName := range fileNames {
+		if fileutils.HasAllowedExtension(fileName, allowedExtensions) {
+			content, err := fileutils.GetFileContentString(filepath.Join(dataDirectory, fileName))
+			if err != nil {
+				fmt.Println(err)
+			}
+
+			noteStore.CreateNote(models.Note{
+				Title:       fileName,
+				Description: content,
+			})
+		}
+	}
+}
 
 func NotesIndex(w http.ResponseWriter, r *http.Request) {
 	successParam := r.URL.Query().Get("success")
