@@ -12,6 +12,8 @@ import (
 var Router = chi.NewRouter()
 
 const (
+	HealthShow = "/up"
+
 	NotesIndex = "/"
 	NotesNew   = "/new"
 )
@@ -27,6 +29,7 @@ func SetupRoutes() {
 	staticAssetsDirectory := http.Dir("assets")
 	Router.Handle(StaticAssetsPath+"*", http.StripPrefix(StaticAssetsPath, http.FileServer(staticAssetsDirectory)))
 
+	Router.Get(HealthShow, controllers.HealthShow)
 	Router.Get(NotesIndex, controllers.NotesIndex)
 	Router.Get(NotesNew, controllers.NotesNew)
 	Router.Post(NotesIndex, controllers.NotesCreate)

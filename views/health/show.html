@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<title>{{ .HealthStatus }}</title>
+
+		<style>
+			*,
+			*::after,
+			*::before {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				align-items: center;
+				display: flex;
+				font-family: sans-serif;
+				font-size: 2rem;
+				justify-content: center;
+				min-block-size: 100vh;
+
+				&.OK {
+					background: green;
+					color: white;
+				}
+			}
+		</style>
+	</head>
+
+	<body class="{{ .HealthStatus }}">
+		<p>{{ .HealthStatus }}</p>
+	</body>
+</html>
