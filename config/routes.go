@@ -23,7 +23,7 @@ func SetupRoutes() {
 	Router.Use(middleware.Logger)
 	Router.Use(middleware.Recoverer)
 	Router.Use(func(next http.Handler) http.Handler {
-		return basicAuth(next)
+		return BasicAuth(next)
 	})
 
 	staticAssetsDirectory := http.Dir("assets")

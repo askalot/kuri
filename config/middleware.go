@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func basicAuth(next http.Handler) http.Handler {
+func BasicAuth(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		username, password, ok := r.BasicAuth()
 

@@ -19,7 +19,12 @@ func startServer() {
 	fmt.Println(fmt.Sprintf("\nListening on http://localhost%s.", port))
 	fmt.Println("Use Ctrl-C stop.")
 
-	http.ListenAndServe(port, config.Router)
+	server := http.Server{
+		Addr:    port,
+		Handler: config.Router,
+	}
+
+	server.ListenAndServe()
 }
 
 func main() {
