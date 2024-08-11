@@ -4,7 +4,7 @@ OUTPUT_EXECUTABLE=server
 
 .PHONY: buildContainer clean debugContainer serve serveContainer setup
 
-all: setup clean build serve
+all: setup clean build
 
 build:
 	go build -o $(OUTPUT_DIRECTORY)/$(OUTPUT_EXECUTABLE) $(ENTRY_FILE)
