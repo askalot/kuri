@@ -5,6 +5,7 @@
 * [Go](https://go.dev/)
 * [Make](https://www.gnu.org/software/make/)
 * [Air](https://github.com/air-verse/air)
+* [Docker](https://www.docker.com/)
 
 ## Uses
 
