@@ -1,4 +1,4 @@
-FROM golang:1.22-alpine3.20
+FROM golang:1.22
 
 #RUN mkdir /usr/src/app
 
