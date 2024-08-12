@@ -2,34 +2,54 @@
 
 <html lang="en">
 	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+
 		<title>{{ .HealthStatus }}</title>
 
+		<link rel="stylesheet" href="static/styles/site.css" />
 		<style>
-			*,
-			*::after,
-			*::before {
-				box-sizing: border-box;
-				margin: 0;
-				padding: 0;
+			dl {
+				& > div {
+					align-items: center;
+					display: grid;
+					grid-template-columns: 5rem 1fr;
+				}
+
+				dt,
+				dd {
+					padding: 1em;
+				}
+
+				dt {
+					font-weight: 700;
+				}
 			}
 
-			body {
-				align-items: center;
-				display: flex;
-				font-family: sans-serif;
-				font-size: 2rem;
-				justify-content: center;
-				min-block-size: 100vh;
-
-				&.OK {
-					background: green;
-					color: white;
-				}
+			.ok {
+				color: green;
+				font-weight: 700;
+				text-transform: uppercase;
 			}
 		</style>
 	</head>
 
-	<body class="{{ .HealthStatus }}">
-		<p>{{ .HealthStatus }}</p>
+	<body class="min-block-size--100vh layout--center">
+		<dl class="card list--with-seperator">
+			<div>
+				<dt>Status</dt>
+				<dd class="{{ .HealthStatus }}">{{ .HealthStatus }}</dd>
+			</div>
+
+			<div>
+				<dt>Time</dt>
+				<dd>{{ .Time }}</dd>
+			</div>
+
+			<div>
+				<dt>Uptime</dt>
+				<dd>{{ .Uptime }}</dd>
+			</div>
+		</dl>
 	</body>
 </html>
