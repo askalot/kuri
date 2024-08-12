@@ -1,7 +1,7 @@
 package config
 
 const (
-	StaticAssetsPath = "/static/"
+	StaticAssetsPath = "/public/"
 
 	JavscriptLink  = StaticAssetsPath + "scripts/"
 	StylesheetLink = StaticAssetsPath + "styles/"
