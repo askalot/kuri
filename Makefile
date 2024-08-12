@@ -1,34 +1,30 @@
-ENTRY_FILE=./cmd/main.go
-OUTPUT_DIRECTORY=./bin
-OUTPUT_EXECUTABLE=server
-
-.PHONY: buildContainer clean debugContainer serve serveContainer setup
+.PHONY: buildContainer clean serve serveContainer setup shell watch usage
 
 all: setup clean build
 
 build:
-	go build -o $(OUTPUT_DIRECTORY)/$(OUTPUT_EXECUTABLE) $(ENTRY_FILE)
+	go build -o ./bin/server ./cmd/main.go
 
 buildContainer:
-	docker build --tag kuri_image .
+	docker compose build
 
 clean:
-	rm -rf $(OUTPUT_DIRECTORY)/$(OUTPUT_EXECUTABLE)
-
-debugContainer:
-	docker exec --interactive --tty kuri_container /bin/sh
+	rm -rf ./bin/server
 
 serve:
-	go run $(ENTRY_FILE)
+	go run ./cmd/main.go -b 0.0.0.0
 
 serveContainer:
-	docker run --interactive --tty --rm --publish 3000:3000 --name kuri_container kuri_image
+	docker compose up
 
 setup:
 	sh ./scripts/setup.sh
 
+shell:
+	docker compose run --service-ports web /bin/sh
+
 watch:
-	air --build.cmd "make build" --build.bin "./bin/server"
+	air
 
 usage:
 	@echo ""
@@ -36,7 +32,7 @@ usage:
 	@echo "make build		# Build project"
 	@echo "make buildContainer	# Build Docker image"
 	@echo "make clean		# Clean build directory"
-	@echo "make debugContainer	# Open shell inside running Docker container"
 	@echo "make serve		# Start server"
 	@echo "make serveContainer	# Start server with Docker"
 	@echo "make setup		# Run setup script"
+	@echo "make shell		# Open shell inside running Docker container"

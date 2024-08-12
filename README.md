@@ -2,13 +2,13 @@
 
 ## Requires
 
-* [Go](https://go.dev/)
 * [Make](https://www.gnu.org/software/make/)
-* [Air](https://github.com/air-verse/air)
 * [Docker](https://www.docker.com/)
 
 ## Uses
 
+* [Go](https://go.dev/)
+* [Air](https://github.com/air-verse/air)
 * [GoDotEnv](https://pkg.go.dev/github.com/joho/godotenv)
 * [chi](https://go-chi.io/)
 
@@ -37,7 +37,7 @@ Update `ADMIN_USERNAME` and `ADMIN_PASSWORD` in `.env`.
 Start the server on `PORT` defined in `.env`:
 
 ```
-make serve
+make serveContainer
 ```
 
 Default URL is http://localhost:3000.
@@ -45,7 +45,7 @@ Default URL is http://localhost:3000.
 ## Build
 
 ```
-make build
+make buildContainer
 ```
 
 ## Clean

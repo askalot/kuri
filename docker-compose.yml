@@ -1,0 +1,12 @@
+name: kuri
+
+services:
+  web:
+    build: .
+    command: air
+    env_file:
+      - .env
+    ports:
+      - "${PORT}:${PORT}"
+    volumes:
+      - .:/usr/src/app
