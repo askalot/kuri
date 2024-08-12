@@ -14,13 +14,13 @@ func HealthShow(w http.ResponseWriter, r *http.Request) {
 
 	MimeTypeApplicationJSON := "application/json"
 	healthStatus := struct {
-		HealthStatus string `json:"status"`
-		Time         string `json:"time"`
-		Uptime       string `json:"uptime"`
+		Status string `json:"status"`
+		Time   string `json:"time"`
+		Uptime string `json:"uptime"`
 	}{
-		HealthStatus: "ok",
-		Time:         time.Now().Format("2006-01-02 15:04:05 MST"),
-		Uptime:       time.Since(startTime).Round(time.Second).String(),
+		Status: "ok",
+		Time:   time.Now().Format("2006-01-02 15:04:05 MST"),
+		Uptime: time.Since(startTime).Round(time.Second).String(),
 	}
 
 	if strings.Contains(r.Header.Get("Accept"), MimeTypeApplicationJSON) {

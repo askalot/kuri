@@ -5,7 +5,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 
-		<title>{{ .HealthStatus }}</title>
+		<title>{{ .Status }}</title>
 
 		<link rel="stylesheet" href="public/styles/site.css" />
 		<style>
@@ -38,7 +38,7 @@
 		<dl class="card list--with-seperator">
 			<div>
 				<dt>Status</dt>
-				<dd class="{{ .HealthStatus }}">{{ .HealthStatus }}</dd>
+				<dd class="{{ .Status }}">{{ .Status }}</dd>
 			</div>
 
 			<div>
