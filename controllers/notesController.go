@@ -71,6 +71,7 @@ func NotesNew(w http.ResponseWriter, r *http.Request) {
 }
 
 func NotesCreate(w http.ResponseWriter, r *http.Request) {
+	noteTags := r.FormValue("tags")
 	fileContent := r.FormValue("note")
 	fileName := timeutils.GenerateCurrentDateTimeString() + ".md"
 	filePath := filepath.Join(dataDirectory, fileName)
@@ -79,6 +80,7 @@ func NotesCreate(w http.ResponseWriter, r *http.Request) {
 	note := models.Note{
 		Title:       fileutils.GetFileNameWithoutExtension(fileName),
 		Description: fileContent,
+		Tags:        noteTags,
 	}
 	noteStore.CreateNote(note)
 

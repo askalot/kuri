@@ -4,4 +4,5 @@ type Note struct {
 	ID          string
 	Title       string
 	Description string
+	Tags        string
 }
